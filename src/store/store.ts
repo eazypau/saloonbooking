@@ -23,6 +23,7 @@ export interface State {
   selectedSaloon: object[];
   listOfBooking: object[];
   deletedId: string;
+  isLogin: boolean;
 }
 
 // define injection key
@@ -38,6 +39,7 @@ export const store = createStore<State>({
     selectedSaloon: [],
     listOfBooking: [],
     deletedId: "",
+    isLogin: false,
   },
   getters: {},
   mutations: {
@@ -59,6 +61,9 @@ export const store = createStore<State>({
     changedNewAddress(state, payload) {
       state.phoneNum = payload;
     },
+    loginStatus(state, payload) {
+      state.isLogin = payload;
+    }
   },
   actions: {
     getCurrentUser({ commit }) {
@@ -68,7 +73,7 @@ export const store = createStore<State>({
           const uid = user.uid;
           const docRef = doc(db, "Profile", uid);
           const getUser = await getDoc(docRef);
-          const userData:any = getUser.data();
+          const userData: any = getUser.data();
           // console.log(userData.name);
           commit("showUserName", userData.name);
           commit("showUserEmail", userData.email);
@@ -82,7 +87,7 @@ export const store = createStore<State>({
     },
     updateUserProfile({ state }) {
       const auth = getAuth();
-      const userOnline:any = auth.currentUser;
+      const userOnline: any = auth.currentUser;
       onAuthStateChanged(auth, async (user) => {
         if (user) {
           const uid = user.uid;
@@ -95,14 +100,14 @@ export const store = createStore<State>({
           if (updateUserDoc !== null) {
             // await dispatch("getCurrentUser");
             console.log("Successfully update profile!");
-            alert("Successfully update user profile!")
+            alert("Successfully update user profile!");
           } else {
             console.log("Failed to update user profile...");
-            alert("Failed to update user profile!")
+            alert("Failed to update user profile!");
           }
         } else {
           console.log("Failed to update user profile...");
-          alert("Failed to update user profile!")
+          alert("Failed to update user profile!");
         }
       });
       updateEmail(userOnline, state.email)
@@ -117,7 +122,7 @@ export const store = createStore<State>({
       state.listOfSaloon = [];
       const querySnapshot = await getDocs(collection(db, "Saloons"));
       querySnapshot.forEach((doc) => {
-        let snapShot:object = doc.data();
+        let snapShot: object = doc.data();
         state.listOfSaloon.push(snapShot);
       });
       console.log("Successfully read from Saloons collection...");
@@ -127,22 +132,24 @@ export const store = createStore<State>({
       const bookingCollection = collection(db, "Bookings");
       // const querySnapshot = await getDocs(collection(db, "Bookings"))
       const auth = getAuth();
-      const user:any = auth.currentUser;
+      const user: any = auth.currentUser;
       const uid = user.uid;
       const q = query(bookingCollection, where("userId", "==", uid));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
-        let snapShot:object = doc.data();
+        let snapShot: object = doc.data();
         state.listOfBooking.push(snapShot);
       });
       console.log("Successfully read from Bookings collection...");
       // console.log(state.listOfBooking);
     },
-    async deleteAppointment({ state }, index:number) {
-      const deleteAppDoc = await deleteDoc(doc(db, "Bookings", state.deletedId))
+    async deleteAppointment({ state }, index: number) {
+      const deleteAppDoc = await deleteDoc(
+        doc(db, "Bookings", state.deletedId)
+      );
       if (deleteAppDoc !== null) {
         console.log("Successfully delete appointment...");
-        state.listOfBooking.splice(index, 1)
+        state.listOfBooking.splice(index, 1);
       } else {
         console.log("Failed to delete appointment...Please try again later...");
       }

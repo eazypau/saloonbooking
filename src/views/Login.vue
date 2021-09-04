@@ -63,7 +63,7 @@ export default defineComponent({
       }
       const auth = getAuth();
       const checking = await checkForUser(this.email);
-      console.log(checking);
+      // console.log(checking);
       if (checking === null) {
         alert("User does not exist...");
         return;

@@ -515,6 +515,7 @@ export default defineComponent({
         const uid = user.uid;
         this.$store.dispatch("getCurrentUser");
         this.isLogin = true;
+        this.$store.commit("loginStatus", this.isLogin)
       } else {
         this.isLogin = false;
       }
