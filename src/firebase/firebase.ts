@@ -48,7 +48,7 @@ const createUserDoc = async (
 const checkForUser = async (userEmail: string) => {
   const findUser = query(profileCollection, where("email", "==", userEmail));
   const getUser = await getDocs(findUser);
-  console.log("getUser: ", getUser.docs.length);
+  // console.log("getUser: ", getUser.docs.length);
   if (getUser.docs.length > 0) {
     // console.log("User exist...");
     return true;

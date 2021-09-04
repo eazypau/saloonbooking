@@ -43,26 +43,37 @@
         </div>
         <div class="sm:pl-10 sm:pr-5 px-2 flex-grow sm:w-auto w-full">
           <div class="border-b-2 mb-4">
-            <h1 class="sm:text-3xl text-lg font-semibold flex items-center justify-between">
+            <h1
+              class="
+                sm:text-3xl
+                text-lg
+                font-semibold
+                flex
+                items-center
+                justify-between
+              "
+            >
               User Information:
               <button @click="showDeleteWindow = true" class="delBtn" id="del">
                 Delete Account
               </button>
             </h1>
           </div>
-          <div v-if="showDeleteWindow" class="popOutWindow">
+          <transition name="window">
+            <div v-if="showDeleteWindow" class="popOutWindow">
               <div class="cancelWindow">
                 <h1 class="mb-3 text-center">
                   Are you sure you want to delete this account?
                 </h1>
                 <div class="flex justify-around">
-                  <button class="yesBtn" @click="deleteAcc">
-                    Yes
+                  <button class="yesBtn" @click="deleteAcc">Yes</button>
+                  <button class="noBtn" @click="showDeleteWindow = false">
+                    No
                   </button>
-                  <button class="noBtn" @click="showDeleteWindow = false">No</button>
                 </div>
               </div>
             </div>
+          </transition>
           <div class="sm:text-base text-sm">
             <div class="mr-3">
               <p>
@@ -146,19 +157,21 @@
                 Cancel
               </button>
             </div>
-            <div v-if="visible" class="popOutWindow">
-              <div class="cancelWindow">
-                <h1 class="mb-3 text-center">
-                  Are you sure you want to cancel the appointment?
-                </h1>
-                <div class="flex justify-around">
-                  <button class="yesBtn" @click="cancelAppointment(index)">
-                    Yes
-                  </button>
-                  <button class="noBtn" @click="visible = false">No</button>
+            <transition name="window">
+              <div v-if="visible" class="popOutWindow">
+                <div class="cancelWindow">
+                  <h1 class="mb-3 text-center">
+                    Are you sure you want to cancel the appointment?
+                  </h1>
+                  <div class="flex justify-around">
+                    <button class="yesBtn" @click="cancelAppointment(index)">
+                      Yes
+                    </button>
+                    <button class="noBtn" @click="visible = false">No</button>
+                  </div>
                 </div>
               </div>
-            </div>
+            </transition>
           </div>
         </div>
       </div>
@@ -226,9 +239,9 @@ export default defineComponent({
       this.visible = false;
     },
     deleteAcc() {
-      this.showDeleteWindow = false
+      this.showDeleteWindow = false;
       const auth = getAuth();
-      const user:any = auth.currentUser;
+      const user: any = auth.currentUser;
 
       deleteUser(user)
         .then(async () => {
@@ -266,12 +279,11 @@ export default defineComponent({
             xhr.open("GET", url);
             xhr.send();
 
-            this.profilePic = url
+            this.profilePic = url;
           })
           .catch((error) => {
             // Handle any errors
             console.log("Error message: ", error);
-            
           });
       } else {
         console.log("User is not logged in...");
@@ -282,4 +294,14 @@ export default defineComponent({
 });
 </script>
 
-<style></style>
+<style>
+.window-enter-active,
+.window-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.window-enter-from,
+.window-leave-to {
+  opacity: 0;
+}
+</style>
