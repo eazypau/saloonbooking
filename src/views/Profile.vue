@@ -258,7 +258,7 @@ export default defineComponent({
     updateProfilePic(event) {
       this.uploading = true;
       this.profilePic = URL.createObjectURL(event.target.files[0]);
-      uploadProfileImg(this.profilePic);
+      uploadProfileImg(event.target.files[0]);
       this.uploading = false;
     },
   },
