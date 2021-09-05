@@ -12,37 +12,37 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
-    meta: { title: "home", requireAuth: false },
+    meta: { requireAuth: false },
   },
   {
     path: "/login",
     name: "Login",
     component: Login,
-    meta: { title: "login", requireAuth: false },
+    meta: { requireAuth: false },
   },
   {
     path: "/register",
     name: "Register",
     component: Register,
-    meta: { title: "register", requireAuth: false },
+    meta: { requireAuth: false },
   },
   {
     path: "/faq",
     name: "Faq",
     component: Faq,
-    meta: { title: "faq", requireAuth: false },
+    meta: { requireAuth: false },
   },
   {
     path: "/saloon",
     name: "Saloon",
     component: Saloon,
-    meta: { title: "saloon", requireAuth: false },
+    meta: { requireAuth: false },
   },
   {
     path: "/profile",
     name: "Profile",
     component: Profile,
-    meta: { title: "profile", requireAuth: true },
+    meta: { requireAuth: true },
   },
 ];
 
