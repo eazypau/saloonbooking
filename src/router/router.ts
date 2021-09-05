@@ -5,44 +5,44 @@ import Register from "../views/Register.vue";
 import Faq from "../views/Faq.vue";
 import Saloon from "../views/List.vue";
 import Profile from "../views/Profile.vue";
-import { store } from "../store/store";
+import { getAuth } from "@firebase/auth";
 
 const routes = [
   {
     path: "/",
     name: "Home",
     component: Home,
-    meta: { requireAuth: false },
+    meta: { title: "home", requireAuth: false },
   },
   {
     path: "/login",
     name: "Login",
     component: Login,
-    meta: { requireAuth: false },
+    meta: { title: "login", requireAuth: false },
   },
   {
     path: "/register",
     name: "Register",
     component: Register,
-    meta: { requireAuth: false },
+    meta: { title: "register", requireAuth: false },
   },
   {
     path: "/faq",
     name: "Faq",
     component: Faq,
-    meta: { requireAuth: false },
+    meta: { title: "faq", requireAuth: false },
   },
   {
     path: "/saloon",
     name: "Saloon",
     component: Saloon,
-    meta: { requireAuth: false },
+    meta: { title: "saloon", requireAuth: false },
   },
   {
     path: "/profile",
     name: "Profile",
     component: Profile,
-    meta: { requireAuth: true },
+    meta: { title: "profile", requireAuth: true },
   },
 ];
 
@@ -52,15 +52,16 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  const auth = getAuth()
+  const user = auth.currentUser
   if (to.meta.requireAuth) {
-    if (store.state.isLogin) {
-      next();
+    if (user) {
+    next()
     } else {
-      alert("Please log in to continue to this page...");
-      router.push("/login");
+      next({name: "Home"})
     }
   } else {
-    next();
+    next()
   }
 });
 
