@@ -23,7 +23,6 @@ export interface State {
   selectedSaloon: object[];
   listOfBooking: object[];
   deletedId: string;
-  isLogin: boolean;
   loading: boolean;
   imgSrc: string;
 }
@@ -41,7 +40,6 @@ export const store = createStore<State>({
     selectedSaloon: [],
     listOfBooking: [],
     deletedId: "",
-    isLogin: false,
     loading: false,
     imgSrc: "",
   },
@@ -64,9 +62,6 @@ export const store = createStore<State>({
     },
     changedNewAddress(state, payload) {
       state.phoneNum = payload;
-    },
-    loginStatus(state, payload) {
-      state.isLogin = payload;
     },
     loadingStatus(state, payload) {
       state.loading = payload;
