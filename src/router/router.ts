@@ -5,7 +5,7 @@ import Register from "../views/Register.vue";
 import Faq from "../views/Faq.vue";
 import Saloon from "../views/List.vue";
 import Profile from "../views/Profile.vue";
-import { store } from "../store/store";
+import { getAuth } from "@firebase/auth";
 
 const routes = [
   {
@@ -52,15 +52,16 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  const auth = getAuth()
+  const user = auth.currentUser
   if (to.meta.requireAuth) {
-    if (store.state.isLogin) {
-      next();
+    if (user) {
+    next()
     } else {
-      alert("Please log in to continue to this page...");
-      router.push("/login");
+      next({name: "Home"})
     }
   } else {
-    next();
+    next()
   }
 });
 
