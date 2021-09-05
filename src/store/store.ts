@@ -24,6 +24,8 @@ export interface State {
   listOfBooking: object[];
   deletedId: string;
   isLogin: boolean;
+  loading: boolean;
+  imgSrc: string;
 }
 
 // define injection key
@@ -40,6 +42,8 @@ export const store = createStore<State>({
     listOfBooking: [],
     deletedId: "",
     isLogin: false,
+    loading: false,
+    imgSrc: "",
   },
   getters: {},
   mutations: {
@@ -63,7 +67,13 @@ export const store = createStore<State>({
     },
     loginStatus(state, payload) {
       state.isLogin = payload;
-    }
+    },
+    loadingStatus(state, payload) {
+      state.loading = payload;
+    },
+    changeImgSrc(state, payload) {
+      state.imgSrc = payload;
+    },
   },
   actions: {
     getCurrentUser({ commit }) {
@@ -122,7 +132,7 @@ export const store = createStore<State>({
       state.listOfSaloon = [];
       const querySnapshot = await getDocs(collection(db, "Saloons"));
       querySnapshot.forEach((doc) => {
-        let snapShot: object = doc.data();
+        let snapShot: any = doc.data();
         state.listOfSaloon.push(snapShot);
       });
       console.log("Successfully read from Saloons collection...");
