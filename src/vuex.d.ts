@@ -12,6 +12,8 @@ declare module "@vue/runtime-core" {
     selectedSaloon: string[];
     listOfBooking: string[];
     deletedId: string;
+    loading: false;
+    imgSrc: string;
   }
 
   // provide typings for `this.$store`

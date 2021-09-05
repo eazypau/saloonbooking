@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import {
   getFirestore,
   collection,
@@ -17,6 +17,7 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
+import { store } from "../store/store";
 
 const firebaseConfig: object = {
   // ENTER YOUR CONFIG HERE
@@ -93,34 +94,39 @@ const saveUserBooking = async (
   }
 };
 
-const uploadProfileImg = async (file: any) => {
+const uploadProfileImg = (file: any) => {
   const auth = getAuth();
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      const uid = user.uid;
-      const storageRef = ref(storage, uid);
-      const uploadTask = uploadBytesResumable(storageRef, file);
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("Upload is " + progress + "% done");
-        },
-        (error) => {
-          console.log("Fail to upload new profle picture...");
-          console.log(error);
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            console.log("File available at", downloadURL);
-          });
+  const user = auth.currentUser;
+  if (user) {
+    const uid = user.uid;
+    const storageRef = ref(storage, uid);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log("Upload is " + progress + "% done");
+        if (progress === 100) {
+          store.commit("loadingStatus", false);
+          store.commit("changeImgSrc", URL.createObjectURL(file));
+          alert("Upload complete!");
         }
-      );
-    } else {
-      console.log("User is not logged in...");
-    }
-  });
+      },
+      (error) => {
+        console.log("Fail to upload new profle picture...");
+        console.log(error);
+        alert("Failed to update profile picture...");
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          console.log("File available at", downloadURL);
+        });
+      }
+    );
+  } else {
+    console.log("User is not logged in...");
+  }
 };
 
 export {

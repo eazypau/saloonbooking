@@ -191,8 +191,6 @@ export default defineComponent({
     return {
       show: false,
       visible: false,
-      profilePic: "",
-      uploading: false,
       showDeleteWindow: false,
     };
   },
@@ -223,6 +221,12 @@ export default defineComponent({
     },
     listOfBooking: function () {
       return this.$store.state.listOfBooking;
+    },
+    uploading: function () {
+      return this.$store.state.loading;
+    },
+    profilePic: function () {
+      return this.$store.state.imgSrc;
     },
   },
   methods: {
@@ -255,14 +259,14 @@ export default defineComponent({
           console.log("Error Message: ", error);
         });
     },
-    updateProfilePic(event) {
-      this.uploading = true;
-      this.profilePic = URL.createObjectURL(event.target.files[0]);
+    updateProfilePic(event: any) {
+      this.$store.commit("changeImgSrc", "");
+      this.$store.commit("loadingStatus", true);
       uploadProfileImg(event.target.files[0]);
-      this.uploading = false;
     },
   },
   created() {
+    this.$store.commit("loadingStatus", true);
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -279,7 +283,9 @@ export default defineComponent({
             xhr.open("GET", url);
             xhr.send();
 
-            this.profilePic = url;
+            // this.profilePic = url;
+            this.$store.commit("changeImgSrc", url);
+            this.$store.commit("loadingStatus", false);
           })
           .catch((error) => {
             // Handle any errors
