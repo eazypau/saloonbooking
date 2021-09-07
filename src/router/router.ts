@@ -1,47 +1,41 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "../views/Home.vue";
-import Login from "../views/Login.vue";
-import Register from "../views/Register.vue";
-import Faq from "../views/Faq.vue";
-import Saloon from "../views/List.vue";
-import Profile from "../views/Profile.vue";
 import { getAuth } from "@firebase/auth";
 
 const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    component: () => import('../views/Home.vue'),
     meta: { requireAuth: false },
   },
   {
     path: "/login",
     name: "Login",
-    component: Login,
+    component: () => import('../views/Login.vue'),
     meta: { requireAuth: false },
   },
   {
     path: "/register",
     name: "Register",
-    component: Register,
+    component: () => import('../views/Register.vue'),
     meta: { requireAuth: false },
   },
   {
     path: "/faq",
     name: "Faq",
-    component: Faq,
+    component: () => import('../views/Faq.vue'),
     meta: { requireAuth: false },
   },
   {
     path: "/saloon",
     name: "Saloon",
-    component: Saloon,
+    component: () => import('../views/List.vue'),
     meta: { requireAuth: false },
   },
   {
     path: "/profile",
     name: "Profile",
-    component: Profile,
+    component: () => import('../views/Profile.vue'),
     meta: { requireAuth: true },
   },
 ];
