@@ -3,20 +3,6 @@
     <div class="header">
       <p
         class="
-          2xl:text-5xl
-          xl:text-4xl
-          lg:text-3xl
-          md:text-2xl
-          sm:text-xl
-          font-semibold
-          md:mb-2
-        "
-        data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out"
-      >
-        Hair Cut At Your Door Step
-      </p>
-      <p
-        class="
           2xl:text-8xl
           xl:text-7xl
           lg:text-6xl
@@ -24,8 +10,22 @@
           sm:text-4xl
           text-2xl
           md:mb-10
-          mb-5
+          mb-3
           font-bold
+        "
+        data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out"
+      >
+        Hair Cut At Your Door Step
+      </p>
+      <p
+        class="
+          2xl:text-5xl
+          xl:text-4xl
+          lg:text-3xl
+          md:text-2xl
+          sm:text-xl
+          font-semibold
+          md:mb-5
         "
         data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-delay="200"
       >
