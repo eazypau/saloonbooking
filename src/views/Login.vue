@@ -31,7 +31,10 @@
         />
       </div>
       <div class="flex justify-center mb-3">
-        <button class="loginBtn" @click="logInUser">Sign In</button>
+        <button class="loginBtn flex items-center" @click="logInUser">
+          <img class="w-7" v-if="loading" src="../assets/334-loader-5.gif" />
+          Sign In
+        </button>
       </div>
       <div class="flex justify-center w-56 text-sm">
         <p class="text-white">
@@ -53,13 +56,15 @@ export default defineComponent({
     return {
       email: "",
       password: "",
+      loading: false,
     };
   },
   methods: {
     async logInUser() {
+      this.loading = true;
       if (this.email === "" || this.password === "") {
-        alert("Please key in user email and password...")
-        return
+        alert("Please key in user email and password...");
+        return;
       }
       const auth = getAuth();
       const checking = await checkForUser(this.email);
@@ -85,6 +90,7 @@ export default defineComponent({
             this.password = "";
             alert("Email/Password does not match");
           });
+        this.loading = false;
       }
     },
   },
