@@ -36,15 +36,7 @@
       </div>
       <div>
         <div v-for="(item, index) in saloonList" :key="index" class="card">
-          <div>
-            <h1 class="md:text-xl sm:text-base text-sm font-semibold mb-2">
-              Name: {{ item.name }}
-            </h1>
-            <p class="sm:text-sm text-xs">
-              Working Hour: {{ item.workingHour }}
-            </p>
-            <p class="sm:text-sm text-xs">Location: {{ item.shopAddress }}</p>
-          </div>
+          <SaloonCard :saloonName='item.name' :saloonWorkingHour='item.workingHour' :saloonAddress='item.shopAddress' />
           <div>
             <button
               @click="
@@ -233,13 +225,21 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from "vue";
+import { computed, defineAsyncComponent, defineComponent, ref } from "vue";
 import { key } from "../store/store";
 import { useStore } from "vuex";
 import { getAuth, onAuthStateChanged } from "@firebase/auth";
 import { saveUserBooking } from "../firebase/firebase";
+import LoadingPage from '../components/Loading.vue';
+
+const SaloonCard = defineAsyncComponent({
+  loader: () => import('../components/SaloonCard.vue'),
+  loadingComponent: LoadingPage,
+  delay: 200,
+})
 
 export default defineComponent({
+  components: {SaloonCard},
   created() {
     this.$store.dispatch("getSaloonDirectory");
     const auth = getAuth();
