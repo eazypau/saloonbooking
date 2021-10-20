@@ -28,7 +28,7 @@ input {
 }
 
 .login, .register {
-    @apply w-screen h-screen flex flex-col items-center justify-center bg-gradient-to-t from-indigo-200 to-indigo-50
+    @apply w-screen flex flex-col items-center justify-center bg-gradient-to-t from-indigo-200 to-indigo-50
 }
 
 .loginBtn, .registerBtn, .bookBtn {

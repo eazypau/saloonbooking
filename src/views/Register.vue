@@ -1,59 +1,186 @@
 <template>
   <div class="register">
-    <div class="max-w-max sm:px-20 px-10 py-8 rounded-lg bg-indigo-700">
-      <p class="mb-10 font-bold text-3xl text-center text-white">Register</p>
-      <div class="flex flex-col items-center mb-5">
-        <label class="text-lg font-semibold mb-1 text-white" for="user"
-          >User Name</label
-        >
-        <input
-          type="text"
-          name="user"
-          id="user"
-          placeholder="User Name"
-          v-model="userName"
-        />
-      </div>
-      <div class="flex flex-col items-center mb-5">
-        <label class="text-lg font-semibold mb-1 text-white" for="email"
-          >Email</label
-        >
-        <input
-          type="email"
-          name="email"
-          id="email"
-          placeholder="Email"
-          autofocus
-          v-model="email"
-        />
-      </div>
-      <div class="flex flex-col items-center mb-5">
-        <label class="text-lg font-semibold mb-1 text-white" for="password"
-          >Password</label
-        >
-        <input
-          type="password"
-          name="password"
-          id="password"
-          placeholder="Password"
-          v-model="password"
-        />
-      </div>
-      <div class="flex flex-col items-center mb-9">
-        <label class="text-lg font-semibold mb-1 text-white" for="password"
-          >Retype Password</label
-        >
-        <input
-          type="password"
-          name="password"
-          id="password"
-          placeholder="Password"
-          v-model="retypePassword"
-          @keypress.enter="createUser"
-        />
-      </div>
-      <div class="flex justify-center mb-3">
-        <button class="registerBtn" @click="createUser">Register</button>
+    <div
+      v-if="loading"
+      class="
+        flex
+        items-center
+        justify-center
+        z-40
+        inset-0
+        w-screen
+        h-screen
+        bg-gray-500 bg-opacity-50
+        absolute
+      "
+    >
+      <svg class="loadingIcon" viewBox="25 25 50 50">
+        <circle cx="50" cy="50" r="20"></circle>
+      </svg>
+    </div>
+    <div class="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-md w-full space-y-8">
+        <div>
+          <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            Register an account
+          </h2>
+          <p class="mt-2 text-center text-sm text-gray-600">
+            Have an account?
+            <router-link
+              :to="{ name: 'Login' }"
+              class="font-medium text-indigo-600 hover:text-indigo-500"
+            >
+              Login
+            </router-link>
+          </p>
+        </div>
+        <form class="mt-8 space-y-6" action="#" method="POST">
+          <input type="hidden" name="remember" value="true" />
+          <div class="rounded-md shadow-sm -space-y-px">
+            <div>
+              <label for="email-address" class="sr-only">Email address</label>
+              <input
+                id="name"
+                name="text"
+                type="text"
+                v-model="userName"
+                class="
+                  appearance-none
+                  rounded-none
+                  relative
+                  block
+                  w-full
+                  px-3
+                  py-2
+                  border border-gray-300
+                  placeholder-gray-500
+                  text-gray-900
+                  rounded-t-md
+                  focus:outline-none
+                  focus:ring-indigo-500
+                  focus:border-indigo-500
+                  focus:z-10
+                  sm:text-sm
+                "
+                placeholder="Name"
+              />
+            </div>
+            <div>
+              <label for="email-address" class="sr-only">Email address</label>
+              <input
+                id="email-address"
+                name="email"
+                type="email"
+                autocomplete="email"
+                v-model="email"
+                class="
+                  appearance-none
+                  rounded-none
+                  relative
+                  block
+                  w-full
+                  px-3
+                  py-2
+                  border border-gray-300
+                  placeholder-gray-500
+                  text-gray-900
+                  focus:outline-none
+                  focus:ring-indigo-500
+                  focus:border-indigo-500
+                  focus:z-10
+                  sm:text-sm
+                "
+                placeholder="Email address"
+              />
+            </div>
+            <div>
+              <label for="password" class="sr-only">Password</label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                autocomplete="current-password"
+                v-model="password"
+                class="
+                  appearance-none
+                  rounded-none
+                  relative
+                  block
+                  w-full
+                  px-3
+                  py-2
+                  border border-gray-300
+                  placeholder-gray-500
+                  text-gray-900
+                  focus:outline-none
+                  focus:ring-indigo-500
+                  focus:border-indigo-500
+                  focus:z-10
+                  sm:text-sm
+                "
+                placeholder="Password"
+              />
+            </div>
+            <div>
+              <label for="password" class="sr-only">Password</label>
+              <input
+                id="retypePassword"
+                name="retypePassword"
+                type="password"
+                autocomplete="current-password"
+                v-model="retypePassword"
+                class="
+                  appearance-none
+                  rounded-none
+                  relative
+                  block
+                  w-full
+                  px-3
+                  py-2
+                  border border-gray-300
+                  placeholder-gray-500
+                  text-gray-900
+                  rounded-b-md
+                  focus:outline-none
+                  focus:ring-indigo-500
+                  focus:border-indigo-500
+                  focus:z-10
+                  sm:text-sm
+                "
+                placeholder="Retype Password"
+              />
+            </div>
+          </div>
+
+          <div>
+            <button
+              @click="createUser"
+              type="button"
+              class="
+                group
+                relative
+                w-full
+                flex
+                justify-center
+                py-2
+                px-4
+                border border-transparent
+                text-sm
+                font-medium
+                rounded-md
+                text-white
+                bg-indigo-600
+                hover:bg-indigo-700
+                focus:outline-none
+                focus:ring-2
+                focus:ring-offset-2
+                focus:ring-indigo-500
+              "
+            >
+              Register
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -75,21 +202,28 @@ export default defineComponent({
       password: "",
       retypePassword: "",
       userName: "",
+      loading: false,
+      alertText: "",
     };
   },
   methods: {
     async createUser() {
       const auth = getAuth();
-      if (this.email === "" || this.password === "" || this.userName === "" || this.retypePassword === "") {
+      if (
+        this.email === "" ||
+        this.password === "" ||
+        this.userName === "" ||
+        this.retypePassword === ""
+      ) {
         console.log("Please provide all necessary information...");
-        alert("Please provide user name, email and password...")
-        return
+        alert("Please provide user name, email and password...");
+        return;
       }
-      const checkingEmail = await checkForUser(this.email)
+      const checkingEmail = await checkForUser(this.email);
       if (checkingEmail === true) {
-        alert("This email has been used. Please use another email.")
-        this.email = ""
-        return
+        alert("This email has been used. Please use another email.");
+        this.email = "";
+        return;
       }
       if (this.password !== this.retypePassword) {
         this.password = "";
@@ -99,6 +233,7 @@ export default defineComponent({
         );
         return;
       }
+      this.loading = true;
       createUserWithEmailAndPassword(auth, this.email, this.password)
         .then((userCredential) => {
           const user = userCredential.user;
@@ -110,16 +245,17 @@ export default defineComponent({
           console.log("User Profile created...");
           signInWithEmailAndPassword(auth, this.email, this.password);
           this.$router.push("/");
+          this.loading = false;
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
           console.log(errorCode + ": " + errorMessage);
+          this.loading = false;
         });
     },
   },
-  setup() {},
 });
 </script>
 
-<style></style>
+<style scoped></style>
