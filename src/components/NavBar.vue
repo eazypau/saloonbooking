@@ -1,20 +1,20 @@
 <template>
   <Popover class="relative bg-white">
-    <div class="w-screen mx-auto px-4 sm:px-6">
+    <div class="mx-auto px-4 sm:px-6">
       <div
         class="
           flex
           justify-between
           items-center
           border-b-2 border-gray-100
-          py-6
+          py-5
           md:justify-start md:space-x-10
         "
       >
         <div class="flex justify-start lg:w-0 lg:flex-1">
           <router-link
             to="/"
-            class="font-semibold text-xl text-indigo-600 flex items-center"
+            class="font-semibold text-xl text-indigo-600 hover:opacity-60 flex items-center fontCourgette"
           >
             <img src="../assets/android-chrome-192x192.png" alt="logo" class="h-11 w-11 mr-2"> SaloonBooking
           </router-link>
@@ -581,4 +581,8 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+  .fontCourgette {
+    font-family: 'Courgette', cursive;
+  }
+</style>

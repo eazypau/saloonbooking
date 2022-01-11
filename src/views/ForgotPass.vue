@@ -14,7 +14,6 @@
         justify-center
         z-40
         inset-0
-        w-screen
         h-screen
         bg-gray-500 bg-opacity-50
         absolute

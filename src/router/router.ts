@@ -4,9 +4,33 @@ import { getAuth } from "@firebase/auth";
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: () => import("../views/Home.vue"),
-    meta: { requireAuth: false },
+    component: () => import("../layouts/layouts.vue"),
+    children: [
+      {
+        path: "/",
+        name: "Home",
+        component: () => import("../views/Home.vue"),
+        meta: { requireAuth: false },
+      },
+      {
+        path: "/faq",
+        name: "Faq",
+        component: () => import("../views/Faq.vue"),
+        meta: { requireAuth: false },
+      },
+      {
+        path: "/saloon",
+        name: "Saloon",
+        component: () => import("../views/List.vue"),
+        meta: { requireAuth: false },
+      },
+      {
+        path: "/profile",
+        name: "Profile",
+        component: () => import("../views/Profile.vue"),
+        meta: { requireAuth: true },
+      },
+    ],
   },
   {
     path: "/login",
@@ -27,27 +51,9 @@ const routes = [
     meta: { requireAuth: false },
   },
   {
-    path: "/faq",
-    name: "Faq",
-    component: () => import("../views/Faq.vue"),
-    meta: { requireAuth: false },
-  },
-  {
-    path: "/saloon",
-    name: "Saloon",
-    component: () => import("../views/List.vue"),
-    meta: { requireAuth: false },
-  },
-  {
-    path: "/profile",
-    name: "Profile",
-    component: () => import("../views/Profile.vue"),
-    meta: { requireAuth: true },
-  },
-  {
     path: "/:pathMatch(.*)*",
     name: "NotFound",
-    component: import('../views/Error404.vue')
+    component: import("../views/Error404.vue"),
   },
 ];
 

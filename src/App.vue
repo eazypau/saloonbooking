@@ -1,23 +1,12 @@
 <template>
-  <div class="flex flex-col screenMinHeight">
-    <Navbar class="sticky top-0 z-20" />
-    <router-view class="flex-1" v-slot="{ Component }">
-      <transition appear name="route" mode="out-in">
-        <component :is="Component"></component>
-      </transition>
-    </router-view>
-  </div>
+  <router-view></router-view>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Navbar from "./components/NavBar.vue";
 
 export default defineComponent({
   name: "App",
-  components: {
-    Navbar,
-  },
 });
 </script>
 
