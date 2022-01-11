@@ -14,9 +14,9 @@
         <div class="flex justify-start lg:w-0 lg:flex-1">
           <router-link
             to="/"
-            class="font-semibold text-xl text-indigo-600"
+            class="font-semibold text-xl text-indigo-600 flex items-center"
           >
-            SaloonBooking
+            <img src="../assets/android-chrome-192x192.png" alt="logo" class="h-11 w-11 mr-2"> SaloonBooking
           </router-link>
         </div>
         <div class="-mr-2 -my-2 md:hidden">
