@@ -14,7 +14,7 @@
           class="xl:text-5xl md:text-3xl sm:text-2xl font-bold md:mb-5"
           data-aos="fade-up"
           data-aos-duration="1000"
-          data-aos-easing="ease-in-out"
+          data-aos-easing="ease-in"
           data-aos-delay="200"
         >
           What are you waiting for?
@@ -23,7 +23,7 @@
           class="xl:text-5xl md:text-3xl sm:text-2xl md:mb-7 mb-2 font-bold"
           data-aos="fade-up"
           data-aos-duration="1000"
-          data-aos-easing="ease-in-out"
+          data-aos-easing="ease-in"
           data-aos-delay="400"
         >
           Book your appointment now!
@@ -31,7 +31,7 @@
         <button
           data-aos="fade-up"
           data-aos-duration="1000"
-          data-aos-easing="ease-in-out"
+          data-aos-easing="ease-in"
           data-aos-delay="600"
           data-aos-once="true"
           @click="goToSaloon"
@@ -40,79 +40,34 @@
           View Available Saloons
         </button>
       </div>
-      <div class="w-full sm:w-1/2 h-72 sm:h-full">
+      <div
+        class="w-full sm:w-1/2 h-72 sm:h-full"
+        data-aos="zoom-in"
+        data-aos-duration="1000"
+        data-aos-easing="ease-in"
+        data-aos-delay="200"
+        data-aos-once="true"
+      >
         <img src="../assets/negative-space-woman-in-window-closeup.jpg" alt="woman peting a cat" class="w-full h-full object-cover" />
       </div>
     </div>
     <div class="py-28 flex flex-col" id="ourVision">
-      <div class="vision" data-aos="fade-right" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-once="true">
-        <p class="xl:text-6xl lg:text-4xl md:text-3xl text-lg font-extrabold md:mb-5 mb-3">Our Vision</p>
-        <p class="max-w-xl xl:text-2xl lg:text-xl md:w-7/12">
+      <div class="vision" data-aos="fade-right" data-aos-duration="1000" data-aos-easing="ease-in-out">
+        <p class="xl:text-6xl lg:text-4xl md:text-3xl text-2xl font-extrabold md:mb-5 mb-3">Our Vision</p>
+        <p class="max-w-xl xl:text-2xl lg:text-xl md:w-7/12" id="ourAim">
           To provide a platform for people to book their door to door hair saloon serivce. Save time and less hassle.
         </p>
       </div>
-      <div class="aim mt-28" id="ourAim" data-aos="fade-left" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-once="true">
-        <p class="xl:text-6xl lg:text-4xl md:text-3xl text-lg font-extrabold md:mb-5 mb-3">Our Aim</p>
+      <div class="aim mt-28" data-aos="fade-left" data-aos-duration="1000" data-aos-easing="ease-in-out">
+        <p class="xl:text-6xl lg:text-4xl md:text-3xl text-2xl font-extrabold md:mb-5 mb-3">Our Aim</p>
         <p class="max-w-xl xl:text-2xl lg:text-xl text-right md:w-7/12">
           To utilize our platform to help others provide their service to the customer in a more efficient and covinient way and to overcome
           the struggles that aris during the pandemic
         </p>
       </div>
     </div>
-    <Features />
-    <div class="py-24">
-      <!-- feedbacks from client -->
-      <h3 class="xl:text-6xl lg:text-4xl md:text-3xl text-lg font-extrabold text-center mb-8 md:mb-12 xl:mb-20">What others say about us?</h3>
-      <div class="grid md:grid-cols-2 gap-4 md:gap-8 max-w-screen-xl mx-auto">
-        <!-- quote - start -->
-        <div class="flex flex-col items-center bg-gradient-to-br from-indigo-300 via-white to-indigo-100 shadow-md rounded-lg gap-4 md:gap-6 px-8 py-6">
-          <div class="max-w-md lg:text-lg text-center">
-            “This is a section of some simple filler text, also known as placeholder text.”
-          </div>
-
-          <div class="flex flex-col sm:flex-row items-center gap-2 md:gap-3">
-            <div class="w-12 md:w-14 h-12 md:h-14 bg-gray-100 border-2 border-indigo-100 rounded-full overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1567515004624-219c11d31f2e??auto=format&q=75&fit=crop&w=112"
-                loading="lazy"
-                alt="Photo by Radu Florin"
-                class="w-full h-full object-cover object-center"
-              />
-            </div>
-
-            <div>
-              <div class="text-sm md:text-base font-bold text-center sm:text-left">John McCulling</div>
-              <p class="text-sm md:text-sm text-center sm:text-left">CEO / Datadrift</p>
-            </div>
-          </div>
-        </div>
-        <!-- quote - end -->
-
-        <!-- quote - start -->
-        <div class="flex flex-col items-center bg-gradient-to-br from-indigo-300 via-white to-indigo-100 shadow-md rounded-lg gap-4 md:gap-6 px-8 py-6">
-          <div class="max-w-md lg:text-lg text-center">
-            “This is a section of some simple filler text, also known as placeholder text.”
-          </div>
-
-          <div class="flex flex-col sm:flex-row items-center gap-2 md:gap-3">
-            <div class="w-12 md:w-14 h-12 md:h-14 bg-gray-100 border-2 border-indigo-100 rounded-full overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1532073150508-0c1df022bdd1?auto=format&q=75&fit=crop&w=112"
-                loading="lazy"
-                alt="Photo by christian ferrer"
-                class="w-full h-full object-cover object-center"
-              />
-            </div>
-
-            <div>
-              <div class="text-sm md:text-base font-bold text-center sm:text-left">Kate Berg</div>
-              <p class="text-sm md:text-sm text-center sm:text-left">CFO / Dashdash</p>
-            </div>
-          </div>
-        </div>
-        <!-- quote - end -->
-      </div>
-    </div>
+    <Features :features="features" />
+    <Feedback :card-details="feedbacks" />
     <div class="location" id="ourOffice">
       <div
         class="flex flex-col lg:flex-row lg:items-center md:justify-around justify-center bg-white px-7 md:px-16 lg:px-0 py-10 lg:py-20 rounded-3xl md:max-w-6xl mx-auto shadow-lg"
@@ -122,7 +77,6 @@
           data-aos="fade-right"
           data-aos-duration="1000"
           data-aos-easing="ease-in-out"
-          data-aos-once="true"
         >
           <div>
             <p class="md:text-4xl text-xl font-bold md:mb-10 mb-4">Our Office</p>
@@ -140,7 +94,12 @@
             <p>+6012345678910</p>
           </div>
         </div>
-        <div class="h-full flex items-center mt-10" data-aos="zoom-in" data-aos-duration="1000" data-aos-easing="linear" data-aos-once="true">
+        <div
+          class="h-full flex justify-center lg:justify-start items-center mt-10 lg:mt-0"
+          data-aos="zoom-in"
+          data-aos-duration="1000"
+          data-aos-easing="linear"
+        >
           <!-- <img class="h-1/2 rounded-lg" src="..\assets\location.JPG" alt="" /> -->
           <div class="md:h-80 rounded-lg bg-location bg-cover bg-center md:w-80 h-60 w-60 shadow-md"></div>
         </div>
@@ -159,14 +118,74 @@
   import router from "../router/router";
   import Reviews from "../components/Reviews.vue";
   import Features from "../components/Features.vue";
+  import Feedback from "../components/Feedback.vue";
+  import peopleCoffee from "../assets/negative-space-man-coffee-sun.jpg";
+  import girlWithGlass from "../assets/negative-space-womans-steampunk-sunglasses.jpg";
+  import { BookmarkIcon, CalendarIcon, ShieldCheckIcon, TrendingUpIcon, LightningBoltIcon, UserIcon } from "@heroicons/vue/outline";
   AOS.init();
 
   export default defineComponent({
     setup() {
       const goToSaloon = () => router.push("/saloon");
-      return { goToSaloon };
+      const feedbacks = [
+        {
+          imageUrl: peopleCoffee,
+          heading: "Don't need to queue and wait at the store",
+          subheading:
+            "Getting my hair done without leaving my doorstep! I have always wanted to have this kind of experience. The hairstylist are very professional and they also keep the SOP due to the pandemic. Keeping customer safe while providing their services.",
+          name: "John Doe",
+          animationDuration: 1000,
+        },
+        {
+          imageUrl: girlWithGlass,
+          heading: "Comfortable and clean",
+          subheading:
+            "I had a great time having my hair done. They brought all their equipments required to your doorstep and provide door-to-door service. How cool is that! The hairstylists are really professional and friendly and they give great advice and tips. Definitely will book again!",
+          name: "Elise Megan",
+          animationDuration: 1200,
+        },
+      ];
+      const features = [
+        {
+          icon: BookmarkIcon,
+          title: "Easy to book",
+          description: "You can make your booking anytime within your fingertips.",
+          animationDuration: 1000,
+        },
+        {
+          icon: CalendarIcon,
+          title: "Choose your date",
+          description: "You can choose your prefer date and time!",
+          animationDuration: 1300,
+        },
+        {
+          icon: ShieldCheckIcon,
+          title: "Safer Option",
+          description: "Nowadays the pandemic is getting worse and people are afraid to go out.",
+          animationDuration: 1600,
+        },
+        {
+          icon: TrendingUpIcon,
+          title: "High demand",
+          description: "This is the future trend of saloon operation.",
+          animationDuration: 1900,
+        },
+        {
+          icon: LightningBoltIcon,
+          title: "Saves time",
+          description: "You don't need to drive and queue. How cool is that!",
+          animationDuration: 2100,
+        },
+        {
+          icon: UserIcon,
+          title: "Services",
+          description: "We provide all kind of services same as what we have in our saloon.",
+          animationDuration: 2400,
+        },
+      ];
+      return { goToSaloon, feedbacks, features };
     },
-    components: { Reviews, Features },
+    components: { Reviews, Features, Feedback },
   });
 </script>
 
