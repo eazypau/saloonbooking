@@ -161,11 +161,13 @@ export default {
     },
     modalTxt: {
       type: String,
-      require: true,
+      default: "this is an error modal"
+      // require: true,
     },
     modalTitle: {
       type: String,
-      require: true,
+      default: "Error title"
+      // require: true,
     },
   },
   methods: {

@@ -43,7 +43,7 @@
       <div
         class="w-full sm:w-1/2 h-72 sm:h-full"
         data-aos="zoom-in"
-        data-aos-duration="1000"
+        data-aos-duration="600"
         data-aos-easing="ease-in"
         data-aos-delay="200"
         data-aos-once="true"

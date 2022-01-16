@@ -275,10 +275,11 @@
     },
     setup() {
       const store = useStore(key);
-      const saloonList = computed(() => store.state.listOfSaloon);
+      const saloonList: any = computed(() => store.state.listOfSaloon);
       let visible = ref(false);
+      let indexOfDoc = ref(0)
 
-      return { saloonList, visible };
+      return { saloonList, visible, indexOfDoc };
     },
   });
 </script>
