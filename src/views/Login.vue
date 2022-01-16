@@ -1,22 +1,6 @@
 <template>
   <div class="login">
-    <div
-      v-if="loading"
-      class="
-        flex
-        items-center
-        justify-center
-        z-40
-        inset-0
-        h-screen
-        bg-gray-500 bg-opacity-50
-        absolute
-      "
-    >
-      <svg class="loadingIcon" viewBox="25 25 50 50">
-        <circle cx="50" cy="50" r="20"></circle>
-      </svg>
-    </div>
+    <Loading v-if="loading" />
     <Modal
       :open="modalStatus"
       :modalTitle="warningTxt"
@@ -155,11 +139,13 @@ import { defineComponent } from "vue";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { checkForUser } from "../firebase/firebase";
 import Modal from "../components/Modal.vue";
+import Loading from "../components/Loading.vue";
 
 export default defineComponent({
   components: {
     Modal,
-  },
+    Loading
+},
   data() {
     return {
       email: "",

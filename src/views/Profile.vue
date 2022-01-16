@@ -266,37 +266,38 @@ export default defineComponent({
     },
   },
   created() {
-    this.$store.commit("loadingStatus", true);
+    // this.$store.commit("loadingStatus", true);
     const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
       if (user) {
         const uid = user.uid;
-        this.$store.dispatch("getCurrentUser");
-        this.$store.dispatch("getBookingDirectory");
-        getDownloadURL(ref(storage, uid))
-          .then((url) => {
-            const xhr = new XMLHttpRequest();
-            xhr.responseType = "blob";
-            xhr.onload = (event) => {
-              const blob = xhr.response;
-            };
-            xhr.open("GET", url);
-            xhr.send();
+        await this.$store.dispatch("getCurrentUser");
+        await this.$store.dispatch("getBookingDirectory");
+        // getDownloadURL(ref(storage, uid))
+        //   .then((url) => {
+        //     const xhr = new XMLHttpRequest();
+        //     xhr.responseType = "blob";
+        //     xhr.onload = (event) => {
+        //       const blob = xhr.response;
+        //     };
+        //     xhr.open("GET", url);
+        //     xhr.send();
 
-            // this.profilePic = url;
-            this.$store.commit("changeImgSrc", url);
-            this.$store.commit("loadingStatus", false);
-          })
-          .catch((error) => {
-            // Handle any errors
-            console.log("Error message: ", error);
-          });
+        //     // this.profilePic = url;
+        //     this.$store.commit("changeImgSrc", url);
+        //     this.$store.commit("loadingStatus", false);
+        //   })
+        //   .catch((error) => {
+        //     // Handle any errors
+        //     console.log("Error message: ", error);
+        //     this.$store.commit("loadingStatus", false);
+        //   });
       } else {
         console.log("User is not logged in...");
+        // this.$store.commit("loadingStatus", false);
       }
     });
   },
-  setup() {},
 });
 </script>
 

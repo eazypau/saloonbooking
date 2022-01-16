@@ -43,6 +43,7 @@ const createUserDoc = async (
     name: userName,
     email: email,
     phoneNumber: "default",
+    photoUrl: ""
   });
 };
 
@@ -121,6 +122,8 @@ const uploadProfileImg = (file: any) => {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           console.log("File available at", downloadURL);
+          store.commit("changeImgSrc", downloadURL)
+          store.dispatch("updateUserPhoto")
         });
       }
     );
