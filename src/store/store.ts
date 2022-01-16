@@ -83,6 +83,7 @@ export const store = createStore<State>({
           commit("showUserName", userData.name);
           commit("showUserEmail", userData.email);
           commit("showUserAddress", userData.phoneNumber);
+          commit("changeImgSrc", userData.photoUrl)
           // state.name = userData.name
           // console.log("the state right now is: ",state.name);
         } else {
@@ -122,6 +123,22 @@ export const store = createStore<State>({
         .catch((error) => {
           console.log("Error message: ", error);
         });
+    },
+    updateUserPhoto({state}) {
+      const auth = getAuth();
+      const userOnline: any = auth.currentUser;
+      onAuthStateChanged(auth, async (user) => {
+        if (user) {
+          const uid = user.uid;
+          const docRef = doc(db, "Profile", uid);
+          const updateUserDoc = await updateDoc(docRef, {
+            photoUrl: state.imgSrc,
+          });
+        } else {
+          console.log("Failed to update user photo...");
+          alert("Failed to update user photo!");
+        }
+      });
     },
     async getSaloonDirectory({ state }) {
       state.listOfSaloon = [];

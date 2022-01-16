@@ -3,24 +3,23 @@
 @tailwind utilities;
 
 .header {
-    @apply w-screen h-screen bg-gradient-to-b from-indigo-700 to-indigo-100 flex flex-col items-center justify-center py-10
+    @apply h-screen bg-gradient-to-br from-indigo-400 via-white to-indigo-100 flex flex-col-reverse sm:flex-row items-center justify-start sm:justify-center
 }
 
-
 .viewBtn {
-    @apply 2xl:text-3xl xl:text-2xl lg:text-xl sm:text-lg text-base py-2 px-4 rounded-lg bg-indigo-200 hover:bg-indigo-500 transition ease-linear duration-500
+    @apply lg:text-xl sm:text-lg text-base text-white font-semibold py-2 px-4 rounded-lg bg-indigo-400 transition ease-linear duration-500
 }
 
 .vision {
-    @apply w-screen h-3/6 flex flex-col justify-center items-start md:pl-16 pl-5 shadow-md
+    @apply h-3/6 w-11/12 2xl:w-9/12 mx-auto flex flex-col justify-center items-start md:pl-16 pl-5
 }
 
 .aim {
-    @apply w-screen h-3/6 flex flex-col justify-center items-end md:pr-16 pr-5 pl-5
+    @apply h-3/6 w-11/12 2xl:w-9/12 mx-auto flex flex-col justify-center items-end md:pr-16 pr-5 pl-5
 }
 
 .location {
-    @apply w-screen h-screen p-5 flex md:flex-row flex-col items-center md:justify-around justify-center bg-gradient-to-b from-indigo-700 to-indigo-100
+    @apply py-24 px-3 md:px-16 bg-gradient-to-b from-white via-indigo-200 to-white
 }
 
 input {
@@ -28,7 +27,7 @@ input {
 }
 
 .login, .register {
-    @apply w-screen h-screen flex flex-col items-center justify-center bg-gradient-to-t from-indigo-200 to-indigo-50
+    @apply h-screen flex flex-col items-center justify-center bg-gradient-to-t from-indigo-200 to-indigo-50
 }
 
 .loginBtn, .registerBtn, .bookBtn {
@@ -48,7 +47,7 @@ input {
 }
 
 .popOutWindow {
-    @apply flex justify-center items-center fixed my-5 h-screen z-10 inset-0 bg-transparent
+    @apply flex justify-center items-center fixed my-5 h-screen z-30 inset-0 bg-gray-50 bg-opacity-10
 }
 
 #del {
