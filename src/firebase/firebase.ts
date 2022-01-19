@@ -120,10 +120,10 @@ const uploadProfileImg = (file: any) => {
         alert("Failed to update profile picture...");
       },
       () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+        getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
           console.log("File available at", downloadURL);
           store.commit("changeImgSrc", downloadURL)
-          store.dispatch("updateUserPhoto")
+          await store.dispatch("updateUserPhoto")
         });
       }
     );

@@ -119,7 +119,7 @@
           <router-link to="/login" class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900" v-show="!isLogin">
             Sign in
           </router-link>
-          <p v-if="isLogin" class="hidden lg:block whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">Welcome, {{ userName }}</p>
+          <!-- <p v-if="isLogin" class="hidden lg:block whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">Welcome, {{ userName }}</p> -->
           <router-link
             to="/register"
             v-if="!isLogin"
@@ -249,7 +249,7 @@
       onAuthStateChanged(auth, (user) => {
         if (user) {
           const uid = user.uid;
-          this.$store.dispatch("getCurrentUser");
+          // this.$store.dispatch("getCurrentUser");
           this.isLogin = true;
         } else {
           this.isLogin = false;
@@ -306,14 +306,14 @@
         },
       ];
       const store = useStore(key);
-      const userName = computed(() => store.state.name);
+      // const userName = computed(() => store.state.name);
       const scrollToTop = () => {
         window.scrollTo(0, 0);
       };
       return {
         abouts,
         resources,
-        userName,
+        // userName,
         scrollToTop,
       };
     },

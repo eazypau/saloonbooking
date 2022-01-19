@@ -159,15 +159,9 @@ export default defineComponent({
   methods: {
     async logInUser() {
       if (this.email === "" || this.password === "") {
-        // alert("Please key in user email and password...");
         this.warningMsg = "Please provide your email address and password";
         this.warningTxt = "Information";
         this.modalStatus = true;
-        // setTimeout(() => {
-        //   console.log("executed timer...");
-
-        //   this.modalStatus = false
-        //   }, 2000)
         return;
       }
       this.loading = true;
@@ -175,7 +169,6 @@ export default defineComponent({
       const checking = await checkForUser(this.email);
       // console.log(checking);
       if (checking === null) {
-        // alert("User does not exist...");
         this.warningMsg = "User account does not exist";
         this.warningTxt = "Error!";
         this.modalStatus = true;

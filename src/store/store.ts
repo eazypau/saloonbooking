@@ -71,9 +71,10 @@ export const store = createStore<State>({
     },
   },
   actions: {
-    getCurrentUser({ commit }) {
+    async getCurrentUser({ commit }) {
       const auth = getAuth();
-      onAuthStateChanged(auth, async (user) => {
+      const user = auth.currentUser
+      // onAuthStateChanged(auth, async (user) => {
         if (user) {
           const uid = user.uid;
           const docRef = doc(db, "Profile", uid);
@@ -89,12 +90,12 @@ export const store = createStore<State>({
         } else {
           console.log("Failed to access user document...");
         }
-      });
+      // });
     },
-    updateUserProfile({ state }) {
+    async updateUserProfile({ state }) {
       const auth = getAuth();
-      const userOnline: any = auth.currentUser;
-      onAuthStateChanged(auth, async (user) => {
+      const user: any = auth.currentUser;
+      // onAuthStateChanged(auth, async (user) => {
         if (user) {
           const uid = user.uid;
           const docRef = doc(db, "Profile", uid);
@@ -103,20 +104,21 @@ export const store = createStore<State>({
             email: state.email,
             phoneNumber: state.phoneNum,
           });
-          if (updateUserDoc !== null) {
-            // await dispatch("getCurrentUser");
-            console.log("Successfully update profile!");
-            alert("Successfully update user profile!");
-          } else {
-            console.log("Failed to update user profile...");
-            alert("Failed to update user profile!");
-          }
+          // if (updateUserDoc !== null) {
+          //   // await dispatch("getCurrentUser");
+          //   console.log("Successfully update profile!");
+          //   alert("Successfully update user profile!");
+          // } else {
+          //   console.log("Failed to update user profile...");
+          //   alert("Failed to update user profile!");
+          // }
+          alert("Successfully update user profile!");
         } else {
-          console.log("Failed to update user profile...");
+          // console.log("Failed to update user profile...");
           alert("Failed to update user profile!");
         }
-      });
-      updateEmail(userOnline, state.email)
+      // });
+      updateEmail(user, state.email)
         .then(() => {
           console.log("Successfully update user email...");
         })
@@ -124,10 +126,10 @@ export const store = createStore<State>({
           console.log("Error message: ", error);
         });
     },
-    updateUserPhoto({state}) {
+    async updateUserPhoto({state}) {
       const auth = getAuth();
-      const userOnline: any = auth.currentUser;
-      onAuthStateChanged(auth, async (user) => {
+      const user: any = auth.currentUser;
+      // onAuthStateChanged(auth, async (user) => {
         if (user) {
           const uid = user.uid;
           const docRef = doc(db, "Profile", uid);
@@ -138,7 +140,7 @@ export const store = createStore<State>({
           console.log("Failed to update user photo...");
           alert("Failed to update user photo!");
         }
-      });
+      // });
     },
     async getSaloonDirectory({ state }) {
       state.listOfSaloon = [];

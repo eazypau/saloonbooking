@@ -192,112 +192,112 @@ export default defineComponent({
       show: false,
       visible: false,
       showDeleteWindow: false,
-    };
-  },
-  computed: {
-    name: {
-      get() {
-        return this.$store.state.name;
-      },
-      set(payload) {
-        this.$store.commit("changedNewName", payload);
-      },
+            isLoading: false
+        };
     },
-    email: {
-      get() {
-        return this.$store.state.email;
-      },
-      set(payload) {
-        this.$store.commit("changedNewEmail", payload);
-      },
+    computed: {
+        name: {
+            get() {
+                return this.$store.state.name;
+            },
+            set(payload) {
+                this.$store.commit("changedNewName", payload);
+            },
+        },
+        email: {
+            get() {
+                return this.$store.state.email;
+            },
+            set(payload) {
+                this.$store.commit("changedNewEmail", payload);
+            },
+        },
+        phoneNumber: {
+            get() {
+                return this.$store.state.phoneNum;
+            },
+            set(payload) {
+                this.$store.commit("changedNewAddress", payload);
+            },
+        },
+        listOfBooking(): any {
+            return this.$store.state.listOfBooking;
+        },
+        uploading: function () {
+            return this.$store.state.loading;
+        },
+        profilePic: function () {
+            return this.$store.state.imgSrc;
+        },
     },
-    phoneNumber: {
-      get() {
-        return this.$store.state.phoneNum;
-      },
-      set(payload) {
-        this.$store.commit("changedNewAddress", payload);
-      },
+    methods: {
+        editUserDetails() {
+            this.show = true;
+        },
+        async updateUserDetails() {
+            await this.$store.dispatch("updateUserProfile");
+            this.show = false;
+        },
+        cancelAppointment(index: number) {
+            this.$store.state.deletedId = this.listOfBooking[index].docId;
+            this.$store.dispatch("deleteAppointment", index);
+            this.visible = false;
+        },
+        deleteAcc() {
+            this.showDeleteWindow = false;
+            const auth = getAuth();
+            const user: any = auth.currentUser;
+            deleteUser(user)
+                .then(async () => {
+                // User deleted.
+                await deleteDoc(doc(db, "Profile", user.uid));
+                console.log("Account deleted...");
+                alert("Successfully deleted account...");
+                this.$router.push("/");
+            })
+                .catch((error) => {
+                console.log("Error Message: ", error);
+            });
+        },
+        updateProfilePic(event: any) {
+            this.$store.commit("changeImgSrc", "");
+            this.$store.commit("loadingStatus", true);
+            uploadProfileImg(event.target.files[0]);
+        },
     },
-    listOfBooking(): any {
-      return this.$store.state.listOfBooking;
-    },
-    uploading: function () {
-      return this.$store.state.loading;
-    },
-    profilePic: function () {
-      return this.$store.state.imgSrc;
-    },
-  },
-  methods: {
-    editUserDetails() {
-      this.show = true;
-    },
-    updateUserDetails() {
-      this.$store.dispatch("updateUserProfile");
-      this.show = false;
-    },
-    cancelAppointment(index: number) {
-      this.$store.state.deletedId = this.listOfBooking[index].docId;
-      this.$store.dispatch("deleteAppointment", index);
-      this.visible = false;
-    },
-    deleteAcc() {
-      this.showDeleteWindow = false;
-      const auth = getAuth();
-      const user: any = auth.currentUser;
-
-      deleteUser(user)
-        .then(async () => {
-          // User deleted.
-          await deleteDoc(doc(db, "Profile", user.uid));
-          console.log("Account deleted...");
-          alert("Successfully deleted account...");
-          this.$router.push("/");
-        })
-        .catch((error) => {
-          console.log("Error Message: ", error);
+    created() {
+        // this.$store.commit("loadingStatus", true);
+        const auth = getAuth();
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                const uid = user.uid;
+                await this.$store.dispatch("getCurrentUser");
+                await this.$store.dispatch("getBookingDirectory");
+                // getDownloadURL(ref(storage, uid))
+                //   .then((url) => {
+                //     const xhr = new XMLHttpRequest();
+                //     xhr.responseType = "blob";
+                //     xhr.onload = (event) => {
+                //       const blob = xhr.response;
+                //     };
+                //     xhr.open("GET", url);
+                //     xhr.send();
+                //     // this.profilePic = url;
+                //     this.$store.commit("changeImgSrc", url);
+                //     this.$store.commit("loadingStatus", false);
+                //   })
+                //   .catch((error) => {
+                //     // Handle any errors
+                //     console.log("Error message: ", error);
+                //     this.$store.commit("loadingStatus", false);
+                //   });
+            }
+            else {
+                console.log("User is not logged in...");
+                // this.$store.commit("loadingStatus", false);
+            }
         });
     },
-    updateProfilePic(event: any) {
-      this.$store.commit("changeImgSrc", "");
-      this.$store.commit("loadingStatus", true);
-      uploadProfileImg(event.target.files[0]);
-    },
-  },
-  created() {
-    // this.$store.commit("loadingStatus", true);
-    const auth = getAuth();
-    onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        const uid = user.uid;
-        await this.$store.dispatch("getCurrentUser");
-        await this.$store.dispatch("getBookingDirectory");
-        // getDownloadURL(ref(storage, uid))
-        //   .then((url) => {
-        //     const xhr = new XMLHttpRequest();
-        //     xhr.responseType = "blob";
-        //     xhr.onload = (event) => {
-        //       const blob = xhr.response;
-        //     };
-        //     xhr.open("GET", url);
-        //     xhr.send();
-
-        //     // this.profilePic = url;
-        //     this.$store.commit("changeImgSrc", url);
-        //     this.$store.commit("loadingStatus", false);
-        //   })
-        //   .catch((error) => {
-        //     // Handle any errors
-        //     console.log("Error message: ", error);
-        //     this.$store.commit("loadingStatus", false);
-        //   });
-      } else {
-        console.log("User is not logged in...");
-        // this.$store.commit("loadingStatus", false);
-      }
-    });
-  },
 });
 </script>
 
