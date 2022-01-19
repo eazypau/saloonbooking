@@ -43,7 +43,7 @@ input {
 }
 
 .bookingWindow {
-    @apply 2xl:w-5/12 xl:w-6/12 lg:w-8/12 md:w-9/12 sm:w-7/12 w-10/12 md:max-h-96 border-2 rounded-lg p-5 border-black bg-white relative
+    @apply 2xl:w-5/12 xl:w-6/12 lg:w-8/12 md:w-11/12 sm:w-7/12 w-10/12 md:max-h-96 border-2 rounded-lg p-5 border-black bg-white relative
 }
 
 .popOutWindow {

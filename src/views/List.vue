@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center">
+  <div class="w-full flex justify-center">
     <Loading v-if="isLoading" />
     <transition name="window">
       <div v-if="needUser" class="popOutWindow">
@@ -69,11 +69,11 @@
                   <div class="font-semibold underline mb-3">
                     <h1>HairCut Appointment Booking</h1>
                   </div>
-                  <div class="grid md:grid-cols-5 sm:grid-cols-2 grid-cols-1 mb-2 overflow-scroll md:h-auto h-40">
+                  <div class="grid md:grid-cols-5 sm:grid-cols-2 grid-cols-1 mb-2 overflow-scroll md:overflow-hidden md:h-auto h-40">
                     <div class="flex flex-col items-start md:col-span-1">
                       <div class="flex flex-col mb-1">
                         <label for="pax">No. of people:</label>
-                        <select class="border rounded-md p-1 bg-white border-black" name="pax" id="pax" v-model="pax" required>
+                        <select class="border rounded-md p-2 bg-white border-black" name="pax" id="pax" v-model="pax" required>
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
@@ -83,7 +83,7 @@
                       </div>
                       <div class="flex flex-col">
                         <label for="type">Type of Service</label>
-                        <select class="border rounded-md p-1 bg-white border-black" name="type" id="type" v-model="type" required>
+                        <select class="border rounded-md p-2 bg-white border-black" name="type" id="type" v-model="type" required>
                           <option value="Hair Cut">Hair Cut</option>
                           <option value="Dye Hair">Dye Hair</option>
                           <option value="Both">Both</option>
@@ -91,7 +91,7 @@
                       </div>
                     </div>
                     <div class="flex flex-col md:col-span-2 md:justify-self-center justify-self-start">
-                      <div class="flex flex-col">
+                      <div class="flex flex-col mb-1">
                         <label for="date">Date:</label>
                         <input class="border-black rounded-md md:w-max w-36" type="date" v-model="date" required />
                       </div>
@@ -114,7 +114,7 @@
                       ></textarea>
                     </div>
                   </div>
-                  <div>
+                  <div class="mt-2">
                     <button
                       @click="
                         completeBooking(
@@ -215,25 +215,30 @@
             const dateArrMonth = Number(dateArr[1]);
             const dateArrDay = Number(dateArr[2]);
             // console.log(dateArrDay + "-" + dateArrMonth + "-" + dateArrYear);
-            const ts = new Date();
-            const day = Number(ts.getDay());
+            const ts: any = new Date();
+            const day = Number(ts.getDate());
             const month = Number(ts.getMonth());
             const year = Number(ts.getFullYear());
             // console.log(day + "-" + month + "-" + year);
-
+            console.log(ts, new Date(this.date));
+            
             if (this.date === "" || this.address === "" || this.time === "") {
               alert("Please provide the time, date and address...");
               return;
             }
-            if (dateArrYear > year) {
-              alert("Please choose the correct year...");
-              return;
+            if (new Date(this.date) < ts) {
+              alert("Please choose a valid date. The appointment date must be at least two days from booking date...")
+              return
             }
-            if (dateArrMonth < month) {
-              alert("Please choose the correct month...");
-              return;
-            }
-            if (dateArrMonth === month && dateArrDay < day) {
+            // if (dateArrYear > year) {
+            //   alert("Please choose the correct year...");
+            //   return;
+            // }
+            // if (dateArrMonth < month) {
+            //   alert("Please choose the correct month...");
+            //   return;
+            // }
+            if (dateArrDay < day + 3) {
               alert("Please choose the correct day...");
               return;
             }

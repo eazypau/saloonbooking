@@ -184,7 +184,7 @@ import { defineComponent } from "vue";
 import { getAuth, onAuthStateChanged, deleteUser } from "firebase/auth";
 import { deleteDoc, doc } from "@firebase/firestore";
 import { db, storage, uploadProfileImg } from "../firebase/firebase";
-import { getDownloadURL, ref } from "@firebase/storage";
+// import { getDownloadURL, ref } from "@firebase/storage";
 
 export default defineComponent({
   data() {
@@ -219,7 +219,7 @@ export default defineComponent({
         this.$store.commit("changedNewAddress", payload);
       },
     },
-    listOfBooking: function () {
+    listOfBooking(): any {
       return this.$store.state.listOfBooking;
     },
     uploading: function () {

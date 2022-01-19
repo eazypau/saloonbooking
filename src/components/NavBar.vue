@@ -119,7 +119,7 @@
           <router-link to="/login" class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900" v-show="!isLogin">
             Sign in
           </router-link>
-          <p v-if="isLogin" class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">Welcome, {{ userName }}</p>
+          <p v-if="isLogin" class="hidden lg:block whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">Welcome, {{ userName }}</p>
           <router-link
             to="/register"
             v-if="!isLogin"
