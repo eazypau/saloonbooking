@@ -1,5 +1,6 @@
 <template>
   <div class="pt-10 flex justify-center">
+    <Loading v-if="isLoading" />
     <div class="xl:w-6/12 lg:w-8/12 md:w-10/12 w-11/12">
       <div class="flex sm:flex-row flex-col items-center w-full mb-5">
         <div class="w-56 h-56 border-2 rounded-lg relative mb-5 sm:mb-0">
@@ -180,18 +181,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import { getAuth, onAuthStateChanged, deleteUser } from "firebase/auth";
 import { deleteDoc, doc } from "@firebase/firestore";
 import { db, storage, uploadProfileImg } from "../firebase/firebase";
+import Loading from "../components/Loading.vue";
 // import { getDownloadURL, ref } from "@firebase/storage";
 
 export default defineComponent({
-  data() {
-    return {
-      show: false,
-      visible: false,
-      showDeleteWindow: false,
+    data() {
+        return {
+            show: false,
+            visible: false,
+            showDeleteWindow: false,
             isLoading: false
         };
     },
@@ -244,6 +246,7 @@ export default defineComponent({
             this.visible = false;
         },
         deleteAcc() {
+            this.isLoading = true
             this.showDeleteWindow = false;
             const auth = getAuth();
             const user: any = auth.currentUser;
@@ -253,6 +256,7 @@ export default defineComponent({
                 await deleteDoc(doc(db, "Profile", user.uid));
                 console.log("Account deleted...");
                 alert("Successfully deleted account...");
+                this.isLoading = false
                 this.$router.push("/");
             })
                 .catch((error) => {
@@ -298,6 +302,7 @@ export default defineComponent({
             }
         });
     },
+    components: { Loading },
 });
 </script>
 

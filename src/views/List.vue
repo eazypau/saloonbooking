@@ -191,7 +191,8 @@
       },
       completeBooking(saloonBookedId: string, saloonBookedName: string, saloonStartTime: string, saloonEndTime: string) {
         const auth = getAuth();
-        onAuthStateChanged(auth, (user) => {
+        const user = auth.currentUser
+        // onAuthStateChanged(auth, (user) => {
           if (user) {
             const uid = user.uid;
             const userEmail = user.email;
@@ -275,7 +276,7 @@
           } else {
             console.log("Failed to save booking...");
           }
-        });
+        // });
       },
     },
     setup() {
