@@ -277,24 +277,6 @@ export default defineComponent({
                 const uid = user.uid;
                 await this.$store.dispatch("getCurrentUser");
                 await this.$store.dispatch("getBookingDirectory");
-                // getDownloadURL(ref(storage, uid))
-                //   .then((url) => {
-                //     const xhr = new XMLHttpRequest();
-                //     xhr.responseType = "blob";
-                //     xhr.onload = (event) => {
-                //       const blob = xhr.response;
-                //     };
-                //     xhr.open("GET", url);
-                //     xhr.send();
-                //     // this.profilePic = url;
-                //     this.$store.commit("changeImgSrc", url);
-                //     this.$store.commit("loadingStatus", false);
-                //   })
-                //   .catch((error) => {
-                //     // Handle any errors
-                //     console.log("Error message: ", error);
-                //     this.$store.commit("loadingStatus", false);
-                //   });
             }
             else {
                 console.log("User is not logged in...");

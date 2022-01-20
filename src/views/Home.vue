@@ -134,7 +134,7 @@
           subheading:
             "Getting my hair done without leaving my doorstep! I have always wanted to have this kind of experience. The hairstylist are very professional and they also keep the SOP due to the pandemic. Keeping customer safe while providing their services.",
           name: "John Doe",
-          animationDuration: 1000,
+          animationDuration: 700,
         },
         {
           imageUrl: girlWithGlass,
@@ -142,7 +142,7 @@
           subheading:
             "I had a great time having my hair done. They brought all their equipments required to your doorstep and provide door-to-door service. How cool is that! The hairstylists are really professional and friendly and they give great advice and tips. Definitely will book again!",
           name: "Elise Megan",
-          animationDuration: 1200,
+          animationDuration: 900,
         },
       ];
       const features = [
@@ -150,37 +150,37 @@
           icon: BookmarkIcon,
           title: "Easy to book",
           description: "You can make your booking anytime within your fingertips.",
-          animationDuration: 1000,
+          animationDuration: 700,
         },
         {
           icon: CalendarIcon,
           title: "Choose your date",
           description: "You can choose your prefer date and time!",
-          animationDuration: 1300,
+          animationDuration: 900,
         },
         {
           icon: ShieldCheckIcon,
           title: "Safer Option",
           description: "Nowadays the pandemic is getting worse and people are afraid to go out.",
-          animationDuration: 1600,
+          animationDuration: 1100,
         },
         {
           icon: TrendingUpIcon,
           title: "High demand",
           description: "This is the future trend of saloon operation.",
-          animationDuration: 1900,
+          animationDuration: 1300,
         },
         {
           icon: LightningBoltIcon,
           title: "Saves time",
           description: "You don't need to drive and queue. How cool is that!",
-          animationDuration: 2100,
+          animationDuration: 1500,
         },
         {
           icon: UserIcon,
           title: "Services",
           description: "We provide all kind of services same as what we have in our saloon.",
-          animationDuration: 2400,
+          animationDuration: 1700,
         },
       ];
       return { goToSaloon, feedbacks, features };

@@ -17,7 +17,7 @@
         class="max-w-md px-8 py-4 mx-auto mt-16 bg-white rounded-lg shadow-lg dark:bg-gray-800"
         data-aos="fade-up"
         :data-aos-duration="item.animationDuration"
-        data-aos-easing="linear"
+        data-aos-easing="ease-in-out"
       >
         <div class="flex justify-center -mt-16 md:justify-end">
           <img

@@ -6,7 +6,7 @@
         <h2
           class="text-gray-800 text-4xl lg:text-4xl xl:text-6xl font-extrabold text-center mb-4 md:mb-6"
           data-aos="fade-up"
-          data-aos-duration="1000"
+          data-aos-duration="500"
           data-aos-easing="ease-in"
         >
           Why choose us?
@@ -26,7 +26,7 @@
           class="flex flex-col items-center"
           data-aos="fade-up"
           :data-aos-duration="item.animationDuration"
-          data-aos-easing="linear"
+          data-aos-easing="ease-in-out"
         >
           <div class="w-12 md:w-14 h-12 md:h-14 flex justify-center items-center text-indigo-500 mb-2 sm:mb-4">
             <component :is="item.icon" class="w-full h-full"></component>
